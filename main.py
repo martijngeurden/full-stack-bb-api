@@ -1,11 +1,15 @@
 from fastapi import FastAPI
-from models import models
 from fastapi.middleware.cors import CORSMiddleware
+
+#files from Martijn Geurden
+from queries import mag_queries
+from models import mag_models
+
+#files from XXXXXX
 
 
 import config
 import database
-from queries import bakery_queries as queries
 
 app = FastAPI(docs_url=config.documentation_url)
 
@@ -23,7 +27,7 @@ app.add_middleware(
 
 @app.get("/subs")
 def get_all_subs():
-    query = queries.sub_all
+    query = mag_queries.sub_all
     all_subs = database.execute_sql_query(query)
     if isinstance(all_subs, Exception):
         return all_subs, 500
@@ -44,8 +48,8 @@ def get_all_subs():
 
 
 @app.post("/subpost")
-def create_sub(sub: models.model_subscription):
-    query = queries.sub_push
+def create_sub(sub: mag_models.model_subscription):
+    query = mag_queries.sub_push
     success = database.execute_sql_query(query, (
         sub.email,
         sub.firstName,
@@ -59,3 +63,20 @@ def create_sub(sub: models.model_subscription):
     ))
     if success:
         return sub
+
+@app.get("/get/pastries")
+def get_all_subs():
+    query = mag_queries.pastries_all
+    all_pastries = database.execute_sql_query(query)
+    if isinstance(all_pastries, Exception):
+        return all_pastries, 500
+    all_pastries_to_return = []
+    for pastry in all_pastries:
+        all_pastries_to_return.append({
+            "productName": pastry[1],
+            "shortName": pastry[2],
+            "longDescription": pastry[3],
+            "imageLocation": pastry[4],
+            "videoLocation": pastry[5]
+        })
+    return {'subscriptions': all_pastries_to_return}
