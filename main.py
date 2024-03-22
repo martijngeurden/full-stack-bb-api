@@ -79,4 +79,4 @@ def get_all_subs():
             "imageLocation": pastry[4],
             "videoLocation": pastry[5]
         })
-    return {'pastries': all_pastries_to_return}
+    return {'data': all_pastries_to_return}
