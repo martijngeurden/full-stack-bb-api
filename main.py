@@ -74,7 +74,7 @@ def get_all_subs():
     for pastry in all_pastries:
         all_pastries_to_return.append({
             "productName": pastry[1],
-            "shortName": pastry[2],
+            "shortDescription": pastry[2],
             "longDescription": pastry[3],
             "imageLocation": pastry[4],
             "videoLocation": pastry[5]
