@@ -79,4 +79,4 @@ def get_all_subs():
             "imageLocation": pastry[4],
             "videoLocation": pastry[5]
         })
-    return {'subscriptions': all_pastries_to_return}
+    return {'pastries': all_pastries_to_return}
