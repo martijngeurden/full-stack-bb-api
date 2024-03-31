@@ -80,6 +80,7 @@ def get_all_subs(score : int = 0):
             "longDescription": pastry[3],
             "imageLocation": pastry[4],
             "videoLocation": pastry[5],
-            "price": pastry[6]
+            "price": pastry[6],
+            "score": pastry[7]
         })
     return {'data': all_pastries_to_return}
