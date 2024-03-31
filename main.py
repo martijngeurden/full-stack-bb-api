@@ -77,6 +77,7 @@ def get_all_subs():
             "shortDescription": pastry[2],
             "longDescription": pastry[3],
             "imageLocation": pastry[4],
-            "videoLocation": pastry[5]
+            "videoLocation": pastry[5],
+            "price": pastry[6]
         })
     return {'data': all_pastries_to_return}
