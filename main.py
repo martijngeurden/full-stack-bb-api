@@ -65,9 +65,11 @@ def create_sub(sub: mag_models.model_subscription):
         return sub
 
 @app.get("/get/pastries")
-def get_all_subs():
+def get_all_subs(score : int = 0):
     query = mag_queries.pastries_all
-    all_pastries = database.execute_sql_query(query)
+    all_pastries = database.execute_sql_query(query, (
+        score,
+    ))
     if isinstance(all_pastries, Exception):
         return all_pastries, 500
     all_pastries_to_return = []
