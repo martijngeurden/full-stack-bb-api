@@ -75,7 +75,7 @@ def get_pastries(score : int = 0):
     all_pastries_to_return = []
     for pastry in pastries:
         all_pastries_to_return.append({
-            "productID": pastry[0],
+            "productID": "pastry_"+pastry[0],
             "productName": pastry[1],
             "shortDescription": pastry[2],
             "longDescription": pastry[3],
