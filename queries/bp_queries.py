@@ -1,0 +1,1 @@
+all_reviews = "SELECT * FROM bakery.reviews;"

@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-#files from Martijn Geurden
+# files from Martijn Geurden
 from queries import mag_queries
 from models import mag_models
 
-#files from XXXXXX
-
+# files from Brecht Proesmans
+from queries import bp_queries
+from models import bp_models
 
 import config
 import database
@@ -15,15 +16,15 @@ app = FastAPI(docs_url=config.documentation_url)
 
 origins = config.cors_origins.split(",")
 
-
 app.add_middleware(
     CORSMiddleware,
-    #todo: aan te passen na hosting
+    # todo: aan te passen na hosting
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.get("/subs")
 def get_all_subs():
@@ -64,8 +65,9 @@ def create_sub(sub: mag_models.model_subscription):
     if success:
         return sub
 
+
 @app.get("/get/pastries")
-def get_pastries(score : int = 0):
+def get_pastries(score: int = 0):
     query = mag_queries.pastries
     pastries = database.execute_sql_query(query, (
         score,
@@ -85,3 +87,22 @@ def get_pastries(score : int = 0):
             "score": pastry[7]
         })
     return {'data': all_pastries_to_return}
+
+
+# De code hieronder is door Brecht Proesmans getypt op de laptop van Martijn Geurden omdat mijn laptop te oud is om
+# pycharm deftig te runnen, hij herkent momenteel het pip-commando zelfs niet. Vince is hier in de klas ook getuige
+# van geweest. Vandaar werk ik op de laptop van Martijn hiervoor.
+@app.get("/review")
+def reviews():
+    query = bp_queries.all_reviews
+    reviews = database.execute_sql_query(query)
+    if isinstance(reviews, Exception):
+        return reviews, 500
+    reviews_to_return = []
+    for review in reviews:
+        reviews_to_return.append({
+            "title": review[0],
+            "content": review[1],
+            "author": review[2],
+        })
+    return {'Reviews': reviews_to_return}
