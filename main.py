@@ -107,5 +107,3 @@ def reviews():
         })
     return {'Reviews': reviews_to_return}
 
-
-
