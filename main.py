@@ -7,7 +7,7 @@ from models import mag_models
 
 # files from Brecht Proesmans
 from queries import bp_queries
-from models import bp_models
+# from models import bp_models
 
 import config
 import database
@@ -106,4 +106,3 @@ def reviews():
             "author": review[2],
         })
     return {'Reviews': reviews_to_return}
-
