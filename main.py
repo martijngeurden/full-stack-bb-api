@@ -101,8 +101,8 @@ def reviews():
     reviews_to_return = []
     for review in reviews:
         reviews_to_return.append({
-            "title": review[0],
-            "content": review[1],
-            "author": review[2],
+            "title": review[1],
+            "content": review[2],
+            "author": review[3],
         })
     return {'Reviews': reviews_to_return}
