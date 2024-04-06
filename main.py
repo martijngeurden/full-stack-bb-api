@@ -110,4 +110,12 @@ def reviews():
 
 @app.post("/applicants")
 def applicants(applicants: bp_model.Applicants):
-    return applicants
+    query = bp_queries.apply
+    success = database.execute_sql_query(query, (
+        applicants.mail,
+        applicants.name,
+        applicants.motivation,
+        applicants.fileLocation,
+    ))
+    if success:
+        return applicants
