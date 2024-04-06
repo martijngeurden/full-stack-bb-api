@@ -1,13 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+import models.bp_model
 # files from Martijn Geurden
 from queries import mag_queries
 from models import mag_models
 
 # files from Brecht Proesmans
 from queries import bp_queries
-# from models import bp_models
+from models import bp_model
 
 import config
 import database
@@ -106,3 +107,7 @@ def reviews():
             "author": review[3],
         })
     return {'Reviews': reviews_to_return}
+
+@app.post("/applicants")
+def applicants(applicants: bp_model.Applicants):
+    return applicants
