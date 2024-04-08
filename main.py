@@ -109,12 +109,12 @@ def reviews():
     return {'Reviews': reviews_to_return}
 
 @app.post("/applicants")
-def applicants(applicants: bp_model.Applicants):
+def applicants(applicant: bp_model.Applicants):
     query = bp_queries.apply
     success = database.execute_sql_query(query, (
-        applicants.mail,
-        applicants.name,
-        applicants.motivation,
+        applicant.mail,
+        applicant.name,
+        applicant.motivation,
     ))
     if success:
-        return applicants
+        return applicant
