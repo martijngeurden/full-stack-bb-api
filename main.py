@@ -88,7 +88,7 @@ def get_pastries(rating: int = 0, order: str = None):
             "price": pastry[6],
             "score": pastry[7]
         })
-    return {'data': all_pastries_to_return}
+    return {'data': order}
 
 
 # De code hieronder is door Brecht Proesmans getypt op de laptop van Martijn Geurden omdat mijn laptop te oud is om
