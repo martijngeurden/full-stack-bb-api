@@ -72,7 +72,6 @@ def get_pastries(rating: int = 0, order: str = None):
     query = "SELECT * FROM bakery.pastries WHERE score >= %s ORDER BY price;"
     pastries = database.execute_sql_query(query, (
         rating,
-        order,
     ))
     if isinstance(pastries, Exception):
         return pastries, 500
