@@ -115,7 +115,6 @@ def applicants(applicants: bp_model.Applicants):
         applicants.mail,
         applicants.name,
         applicants.motivation,
-        applicants.fileLocation,
     ))
     if success:
         return applicants
