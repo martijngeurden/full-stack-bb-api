@@ -68,10 +68,11 @@ def create_sub(sub: mag_models.model_subscription):
 
 
 @app.get("/get/pastries")
-def get_pastries(score: int = 0):
+def get_pastries(score: int = 0, order: int = 0):
     query = mag_queries.pastries
     pastries = database.execute_sql_query(query, (
         score,
+        order,
     ))
     if isinstance(pastries, Exception):
         return pastries, 500
