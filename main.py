@@ -68,8 +68,12 @@ def create_sub(sub: mag_models.model_subscription):
 
 
 @app.get("/get/pastries")
-def get_pastries(rating: int = 0, order: str = None):
-    query = "SELECT * FROM bakery.pastries WHERE score >= %s ORDER BY price;"
+def get_pastries(rating: int = 0, order: int = 0):
+    if order == 1:
+        query = mag_queries.pastries
+    else:
+        query = mag_queries.pastriesDesc
+
     pastries = database.execute_sql_query(query, (
         rating,
     ))
@@ -87,7 +91,7 @@ def get_pastries(rating: int = 0, order: str = None):
             "price": pastry[6],
             "score": pastry[7]
         })
-    return {'data': order}
+    return {'data': all_pastries_to_return}
 
 
 # De code hieronder is door Brecht Proesmans getypt op de laptop van Martijn Geurden omdat mijn laptop te oud is om
