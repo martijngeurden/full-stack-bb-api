@@ -69,7 +69,7 @@ def create_sub(sub: mag_models.model_subscription):
 
 @app.get("/get/pastries")
 def get_pastries(rating: int = 0, order: str = "ASC"):
-    query = "SELECT * FROM bakery.pastries WHERE score >= %s ORDER BY price %s;"
+    query = "SELECT * FROM bakery.pastries WHERE score >= %s ORDER BY price ASC;"
     pastries = database.execute_sql_query(query, (
         rating,
         order.upper()  # Ensure the order is uppercase (ASC or DESC)
