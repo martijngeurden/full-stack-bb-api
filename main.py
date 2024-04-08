@@ -68,10 +68,11 @@ def create_sub(sub: mag_models.model_subscription):
 
 
 @app.get("/get/pastries")
-def get_pastries(rating: int = 0, order: str = "ASC"):
-    query = "SELECT * FROM bakery.pastries WHERE score >= %s ORDER BY price ASC;"
+def get_pastries(rating: int = 0, order: str = None):
+    query = "SELECT * FROM bakery.pastries WHERE score >= %s ORDER BY price %s;"
     pastries = database.execute_sql_query(query, (
         rating,
+        order,
     ))
     if isinstance(pastries, Exception):
         return pastries, 500
