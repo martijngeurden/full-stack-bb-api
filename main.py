@@ -27,7 +27,7 @@ app.add_middleware(
 )
 
 
-@app.get("/subs")
+@app.get("/get/subs")
 def get_all_subs():
     query = mag_queries.sub_all
     all_subs = database.execute_sql_query(query)
@@ -52,6 +52,11 @@ def get_all_subs():
 @app.post("/post/sub")
 def create_sub(sub: mag_models.model_subscription):
     query = mag_queries.sub_push
+    mailToCheck = mag_queries.sub_check_mail
+    mailingList = database.execute_sql_query(mailToCheck)
+    for i in range(len(mailingList)):
+        if mailingList[i][0] == sub.email:
+            return "error"
     success = database.execute_sql_query(query, (
         sub.email,
         sub.firstName,
