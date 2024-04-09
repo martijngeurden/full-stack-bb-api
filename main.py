@@ -56,7 +56,7 @@ def create_sub(sub: mag_models.model_subscription):
     mailingList = database.execute_sql_query(mailToCheck)
     for i in range(len(mailingList)):
         if mailingList[i][0] == sub.email:
-            return sub.email, 418
+            return "Failed : " + sub.email + " already exists", 418
     success = database.execute_sql_query(query, (
         sub.email,
         sub.firstName,
@@ -70,6 +70,8 @@ def create_sub(sub: mag_models.model_subscription):
     ))
     if success:
         return sub
+    if isinstance(sub, Exception):
+        return "Error reaching the DataBase, please try again later", 500
 
 
 @app.get("/get/pastries")
