@@ -56,7 +56,7 @@ def create_sub(sub: mag_models.model_subscription):
     mailingList = database.execute_sql_query(mailToCheck)
     for i in range(len(mailingList)):
         if mailingList[i][0] == sub.email:
-            return "Failed : " + sub.email + " already exists", 418
+            return 'Failed : "' + sub.email + '" already exists', 418
     success = database.execute_sql_query(query, (
         sub.email,
         sub.firstName,
