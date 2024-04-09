@@ -49,7 +49,7 @@ def get_all_subs():
     return {'subscriptions': all_subs_to_return}
 
 
-@app.post("/subpost")
+@app.post("/post/sub")
 def create_sub(sub: mag_models.model_subscription):
     query = mag_queries.sub_push
     success = database.execute_sql_query(query, (
@@ -111,6 +111,7 @@ def reviews():
             "author": review[3],
         })
     return {'Reviews': reviews_to_return}
+
 
 @app.post("/applicants")
 def applicants(applicant: bp_model.Applicants):
