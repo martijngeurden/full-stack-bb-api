@@ -128,5 +128,23 @@ def applicants(applicant: bp_model.Applicants):
         applicant.name,
         applicant.motivation,
     ))
+    if isinstance(success, Exception):
+        return success, 500
     if success:
         return applicant
+
+@app.get("/people")
+def people(gender: str = ""):
+    query = bp_queries.people
+    people = database.execute_sql_query(query, (
+        '%{}%'.format(gender),
+    ))
+    people_to_return = []
+    for peop in people:
+        people_to_return.append({
+            "name": peop[1],
+            "shortDescription": peop[2],
+            "longDescription": peop[3],
+            "gender": peop[4],
+        })
+    return {'People': people_to_return}
