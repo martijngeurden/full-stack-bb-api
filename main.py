@@ -148,3 +148,16 @@ def people(gender: str = ""):
             "gender": peop[4],
         })
     return {'People': people_to_return}
+
+@app.post("/post/order")
+def order(order: mag_models.model_order):
+    query = mag_queries.post_order
+    success = database.execute_sql_query(query, (
+        order.name,
+        order.date,
+        order.details,
+    ))
+    if isinstance(success, Exception):
+        return success, 500
+    if success:
+        return order

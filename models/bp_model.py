@@ -4,3 +4,4 @@ class Applicants(BaseModel):
     mail: str
     name: str
     motivation: str
+

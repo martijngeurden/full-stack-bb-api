@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from datetime import date
 
 
 class model_subscription(BaseModel):
@@ -11,3 +12,9 @@ class model_subscription(BaseModel):
     zipCode: int
     city: str
     additionalInformation: str = None
+
+
+class model_order(BaseModel):
+    name: str
+    date: date
+    details: str

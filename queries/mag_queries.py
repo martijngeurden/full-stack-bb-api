@@ -4,3 +4,5 @@ sub_check_mail = "SELECT email FROM bakery.subscriptions;"
 
 pastries = "SELECT * FROM bakery.pastries WHERE score >= %s ORDER BY price;"
 pastriesDesc = "SELECT * FROM bakery.pastries WHERE score >= %s ORDER BY price DESC;"
+
+post_order = "INSERT INTO bakery.orders (name, orderDate, orderDetails) VALUES (%s, %s, %s);"
