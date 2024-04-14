@@ -1,3 +1,5 @@
+# mag = Martijn Geurden
+
 from pydantic import BaseModel
 from datetime import date
 

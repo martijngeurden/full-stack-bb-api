@@ -1,3 +1,7 @@
+# bp = Brecht Proesmans
+# mag = Martijn Geurden
+
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes import bp_endpoints, mag_endpoints
@@ -13,7 +17,6 @@ origins = config.cors_origins.split(",")
 
 app.add_middleware(
     CORSMiddleware,
-    # todo: aan te passen na hosting
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],

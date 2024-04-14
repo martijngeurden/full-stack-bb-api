@@ -1,3 +1,5 @@
+# mag = Martijn Geurden
+
 from fastapi import APIRouter
 import database
 from queries import mag_queries

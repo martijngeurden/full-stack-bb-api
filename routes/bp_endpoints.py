@@ -1,3 +1,5 @@
+# bp = Brecht Proesmans
+
 from fastapi import APIRouter
 import database
 from queries import bp_queries
